@@ -21,6 +21,7 @@ def insertion_sort(arr):
             j -= 1
         arr[j + 1] = key
 
+# ...
 n_values = [1000, 10000, 100000]
 m_values = [500, 5000, 50000]
 
@@ -46,10 +47,14 @@ for n in n_values:
         results['Bubble Sort'].append(avg_time_bubble)
         results['Insertion Sort'].append(avg_time_insertion)
 
+# Separate the results for each algorithm
+bubble_sort_results = results['Bubble Sort'][:len(n_values)]
+insertion_sort_results = results['Insertion Sort'][:len(n_values)]
+
 plt.figure(figsize=(10, 6))
 
-for algo, times in results.items():
-    plt.plot(n_values, times, label=algo)
+plt.plot(n_values, bubble_sort_results, label='Bubble Sort')
+plt.plot(n_values, insertion_sort_results, label='Insertion Sort')
 
 plt.xlabel('Array Size (n)')
 plt.ylabel('Average Running Time (seconds)')
