@@ -42,8 +42,8 @@ def benchmark(args):
         time_insertion = timeit.timeit(lambda: insertion_sort(arr_copy_for_insertion), number=1)
         total_time_insertion += time_insertion
 
-    avg_time_bubble = (total_time_bubble / 1000) * 1000 # Convert to milliseconds
-    avg_time_insertion = (total_time_insertion / 1000) * 1000 # Convert to milliseconds
+    avg_time_bubble = total_time_bubble       # (total_time_bubble / 1000) * 1000 Finds the avg then Convert to milliseconds
+    avg_time_insertion = total_time_insertion # (total_time_bubble / 1000) * 1000 Finds the avg then Convert to milliseconds
     
     print(f"[Process {pid}] Completed benchmark for n={n}, m={m}.")
     return avg_time_bubble, avg_time_insertion
