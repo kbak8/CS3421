@@ -9,7 +9,7 @@
 # python -m pip install -U matplotlib
 # python -m pip install -U pathos
 #
-# Navigate to directory containing bruteForce.py in cmd prompt
+# Navigate to directory containing implementationComparison.py in cmd prompt
 # python implementationComparison.py
 import random
 import timeit
