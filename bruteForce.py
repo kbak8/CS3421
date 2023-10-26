@@ -51,7 +51,7 @@ n_factors = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] # Determine length 
 # if the array is unique. It does this 1000 times for each value of m, calculates the average number of comparisons
 # for each pair of (m, n) and finally generates a plot of the data.
 # Cost:
-#   Time complexity: O(n^2) (the call to is_unique is O(n^2) and it happens a constant number of times, which still reduces to O(n^2))
+#   Time complexity: O(n^2) (the call to is_unique is O(n^2), the amount of times the loops run doesn't depend on input)
 #   Space complexity: O(n) (the size of the array that gets generated here depends on n)
 print("Average comparisons after 1000 runs:")
 for m in m_values: # m-values is always a constant size
@@ -75,4 +75,3 @@ plt.ylabel('Average Comparisons')
 plt.legend()
 plt.title('Average Comparisons vs. n for Different m Values')
 plt.show()
-
