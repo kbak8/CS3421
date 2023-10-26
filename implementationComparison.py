@@ -86,23 +86,27 @@ def benchmark(args):
 # It then concurrently runs the algorithms a specified number of times according to the values. Once the benchmarking is
 # finished, a status message is printed and the graph comparing the sorting algorithms is generated.
 if __name__ == "__main__":
-    n_values = [1000, 10000, 100000]
-    m_values = [500, 5000, 50000]
-    functions = [bubble_sort, insertion_sort]
+    n_values = [1000, 10000, 100000] # Array sizes
+    m_values = [500, 5000, 50000] # Range of values in the array
+    functions = [bubble_sort, insertion_sort] # Functions to benchmark
     num_runs_dict = {n_values[0]: 1000, n_values[1]: 1000, n_values[2]: 10}  # Number of runs for each n value
 
     # If you have more than 2 cores, use all but two of them
     pool = ProcessPool(processes=max(1, os.cpu_count() - 2))
     print(f"Total CPU cores available: {os.cpu_count()} cores Using: {max(1, os.cpu_count() - 2)} cores")
-    
-    args_list = [(n, m, f, num_runs_dict[n], ) for n in n_values for m in m_values for f in functions] 
-    results = pool.map(benchmark, args_list)
 
+    # Create a list of arguments for the benchmark function
+    args_list = [(n, m, f, num_runs_dict[n], ) for n in n_values for m in m_values for f in functions] 
+    
+    # Execute the benchmark using the pool
+    results = pool.map(benchmark, args_list)
     print("Benchmarking completed!")
 
+    # Extract the results for each function
     bubble_sort_results = [res[3] for res in results if res[2] == "bubble_sort"]
     insertion_sort_results = [res[3] for res in results if res[2] == "insertion_sort"]
 
+    # Plot the results
     plt.figure(figsize=(10, 6))
 
     x_ticks_labels = [f"{n}, {m}, runs:{num_runs_dict[n]}" for n in n_values for m in m_values]
