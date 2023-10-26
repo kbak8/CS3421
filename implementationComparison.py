@@ -4,9 +4,22 @@ import matplotlib.pyplot as plt
 from pathos.multiprocessing import ProcessPool
 import os
 
+# Function: generate_random_array
+# Author: group
+# Takes a length (n) and maximum element value (m) as inputs.
+# Returns an array of length n containing random numbers in the range [1..m]
+# Cost:
+#   Time complexity: O(n) (basic operation of generating random number n times)
+#   Space compleity: O(n) (size of array directly proportional to space taken by program)
 def generate_random_array(n, m):
     return [random.randint(1, m) for _ in range(n)]
 
+
+# Function: bubble_sort
+# Author: group
+# Takes an array of size n, and sorts it according to the algorithm for bubble sort
+#   Time complexity: O(n^2) (basic operation of comparing numbers n^2 times)
+#   Space compleity: O(1) (uses a constant amount of space to store comparison data)
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -14,6 +27,11 @@ def bubble_sort(arr):
             if arr[j] > arr[j+1]:
                 arr[j], arr[j+1] = arr[j+1], arr[j]
 
+# Function: bubble_sort
+# Author: group
+# Takes an array of size n, and sorts it according to the algorithm for insertion sort
+#   Time complexity: O(n^2) (basic operation of comparing numbers n^2 times)
+#   Space compleity: O(1) (uses a constant amount of space to store comparison data)
 def insertion_sort(arr):
     for i in range(1, len(arr)):
         key = arr[i]
@@ -23,6 +41,16 @@ def insertion_sort(arr):
             j -= 1
         arr[j + 1] = key
 
+
+# Function : benchmark
+# Author: group
+# This method runs the f specified sorting algorithm according to the number of times and data size specified in arr
+# It prints a status message before and after, and uses timeit to measure the average time for each run. This data is
+# returned to main for plotting
+#
+# Cost:
+#   Time complexity: O(n^2) (the time complexity of both possible algorithms to be called is n^2)
+#   Space complexity: O(1) (the space complexity is the same as the algorithms being called)
 def benchmark(args):
     n, m, f, num_runs = args
     pid = os.getpid()
@@ -39,7 +67,11 @@ def benchmark(args):
     print(f"[Process {pid}] Completed {f.__name__} benchmark for n={n}, m={m}. Average time: {avg_time:.2f} ms")
     return n, m, f.__name__, avg_time 
 
-
+#  Main function
+# Author: group
+# This method creates the predefined arrays for n and m values, and organizes the number of runs for each sorting algorithm
+# It then concurrently runs the algorithms a specified number of times according to the values. Once the benchmarking is
+# finished, a status message is printed and the graph comparing the sorting algorithms is generated.
 if __name__ == "__main__":
     n_values = [1000, 10000, 100000]
     m_values = [500, 5000, 50000]
