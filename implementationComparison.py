@@ -1,3 +1,16 @@
+# CS4321 Project 1
+# Kevin Bak, Patrick Janssen, Brennan Domerese, Ethan Jones
+# 10/24/2023
+#
+# How to run:
+# Ensure python is installed
+# Run commands in elevated cmd prompt to install necessary library:
+# python -m pip install -U pip
+# python -m pip install -U matplotlib
+# python -m pip install -U pathos
+#
+# Navigate to directory containing bruteForce.py in cmd prompt
+# python implementationComparison.py
 import random
 import timeit
 import matplotlib.pyplot as plt
